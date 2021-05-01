@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	[Library("minigolf_hole_goal")]
 	public partial class HoleGoal : ModelEntity
@@ -23,7 +23,7 @@ namespace Minigolf
 		public override void StartTouch(Entity other)
 		{
 			if (other is PlayerBall)
-				(Game.Current as GolfGame).OnBallInHole(other as PlayerBall, Hole);
+				(Game.Current as TrickgolfGame).OnBallInHole(other as PlayerBall, Hole);
 		}
 	}
 }

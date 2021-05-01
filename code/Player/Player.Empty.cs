@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	/// <summary>
 	/// Empty Player Animator since we don't have anything to animate

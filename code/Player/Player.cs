@@ -2,7 +2,7 @@ using Sandbox;
 using System;
 using System.Linq;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	/// <summary>
 	/// Create an utter barebones Player, we don't want any actual player!
@@ -33,7 +33,7 @@ namespace Minigolf
 				BallHandle = new PlayerBall();
 			Ball.Owner = this;
 
-			(Game.Current as GolfGame).ResetBall(Ball);
+			(Game.Current as TrickgolfGame).ResetBall(Ball);
 
 			// Setup our dud controller and animator
 			SetupControllerAndAnimator();

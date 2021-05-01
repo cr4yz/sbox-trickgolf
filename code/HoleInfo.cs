@@ -1,7 +1,7 @@
 ﻿using Sandbox;
 using System.Linq;
 
-namespace Minigolf
+namespace Trickgolf
 {
     class HoleInfo
     {

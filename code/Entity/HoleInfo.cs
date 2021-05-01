@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	[Library("minigolf_hole_info")]
 	public partial class HoleInfoEntity : ModelEntity

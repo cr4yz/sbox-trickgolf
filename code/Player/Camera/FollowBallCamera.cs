@@ -1,7 +1,7 @@
 ﻿using Sandbox;
 using System;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	public class FollowBallCamera : BaseCamera
 	{

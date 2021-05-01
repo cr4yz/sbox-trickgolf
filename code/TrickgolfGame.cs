@@ -1,19 +1,19 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Sandbox;
 
-namespace Minigolf
+namespace Trickgolf
 {
-	[Library("minigolf", Title = "Minigolf")]
-	partial class GolfGame : Sandbox.Game
+	[Library("trickgolf", Title = "Trickgolf")]
+	partial class TrickgolfGame : Game
 	{
-		public GolfGame()
+		public TrickgolfGame()
 		{
 			// easy way for now.. todo look into actual clientside huds?
 			if (IsServer)
-				new GolfHUD();
+            {
+				new TrickgolfHud();
+            }
 
 			_ = StartTickTimer();
 		}
@@ -32,23 +32,28 @@ namespace Minigolf
 		public void OnTick()
         {
 			if (Host.IsClient)
+            {
 				return;
+            }
 
-			var balls = Entity.All.OfType<PlayerBall>();
-			foreach(var ball in balls)
+			foreach(var ball in All.OfType<PlayerBall>())
             {
 				var wasMoving = ball.IsMoving;
 				ball.IsMoving = !ball.Velocity.IsNearlyZero();
 
 				if (ball.IsMoving == false && wasMoving == true)
+                {
 					OnBallStoppedMoving(ball);
+                }
 			}
 		}
 
 		public override void DoPlayerDevCam(Player player)
 		{
 			if (!player.HasPermission("devcam"))
+            {
 				return;
+            }
 
 			if (player is GolfPlayer basePlayer)
 			{

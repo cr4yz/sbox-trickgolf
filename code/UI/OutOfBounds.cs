@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	public partial class OutOfBounds : Panel
 	{
@@ -34,12 +34,12 @@ namespace Minigolf
 		{
 			messageLabel.Text = Messages.OrderBy(x => Guid.NewGuid()).First().ToUpper();
 
-			(GolfHUD.Current as GolfHUD).Fade = true;
+			(TrickgolfHud.Current as TrickgolfHud).Fade = true;
 			AddClass("show");
 
 			await Task.DelaySeconds(3);
 
-			(GolfHUD.Current as GolfHUD).Fade = false;
+			(TrickgolfHud.Current as TrickgolfHud).Fade = false;
 			RemoveClass("show");
 		}
 	}

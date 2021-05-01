@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	/// <summary>
 	/// Player golf ball

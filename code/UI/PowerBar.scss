@@ -1,8 +1,13 @@
 ﻿powerbar {
     position: absolute;
-    bottom: 86px;
-    left: 120px;
+    bottom: 48px;
+    left: 64px;
     flex-direction: column;
+    opacity:0;
+
+    &.active {
+        opacity:1;
+    }
 
     label {
         color: white;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Sandbox;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	[Library("minigolf_hole_bounds")]
 	public partial class HoleBounds : BaseTrigger

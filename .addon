@@ -1,5 +1,5 @@
 {
-    "name": "minigolf",
+    "name": "trickgolf",
     "version": "1.0",
     "sharedassets": "*.*",
     
@@ -11,8 +11,8 @@
     "gamemodes":
     [
       {
-        "name": "minigolf",
-        "title": "Minigolf",
+        "name": "trickgolf",
+        "title": "Trickgolf",
         "description": "hit your balls"
       }
     ]

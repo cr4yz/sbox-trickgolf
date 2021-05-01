@@ -4,7 +4,7 @@ using Sandbox.UI;
 using Sandbox.UI.Construct;
 using System.Threading.Tasks;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	public partial class HoleScore : Panel
 	{
@@ -35,7 +35,7 @@ namespace Minigolf
 
 		public override void Tick()
 		{
-			var game = Game.Current as GolfGame;
+			var game = Game.Current as TrickgolfGame;
 			if (game == null) return;
 
 			var player = Player.Local as GolfPlayer;

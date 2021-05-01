@@ -5,7 +5,7 @@ using Sandbox.UI.Construct;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	public partial class EndScore : Panel
 	{
@@ -47,12 +47,12 @@ namespace Minigolf
 
 			holeLabel.Text = $"Hole {hole}".ToUpper();
 
-			(GolfHUD.Current as GolfHUD).Fade = true;
+			(TrickgolfHud.Current as TrickgolfHud).Fade = true;
 			AddClass("show");
 
 			await Task.DelaySeconds(5);
 
-			(GolfHUD.Current as GolfHUD).Fade = false;
+			(TrickgolfHud.Current as TrickgolfHud).Fade = false;
 			RemoveClass("show");
         }
 	}

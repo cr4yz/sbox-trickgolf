@@ -4,7 +4,7 @@ using Sandbox.UI;
 using Sandbox.UI.Construct;
 using System.Threading.Tasks;
 
-namespace Minigolf
+namespace Trickgolf
 {
 	public partial class PowerBar : Panel
 	{

@@ -4,18 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Sandbox;
 
-namespace Minigolf
+namespace Trickgolf
 {
-	partial class GolfGame
+	partial class TrickgolfGame
 	{
 		[ServerVar("minigolf_power_multiplier")]
 		public static float PowerMultiplier { get; set; } = 25.0f;
 
 		// todo: move this stuff out!!
-		[Net] public int CurrentHole { get; set; } = 1;
+		[Net] 
+		public int CurrentHole { get; set; } = 1;
 		public int HolePar { get; set; } = 2;
 
-		[Net] public bool WaitingToStart { get; set; } = true;
+		[Net] 
+		public bool WaitingToStart { get; set; } = true;
 
 		static readonly SoundEvent SoundHoleInOne = new SoundEvent("sounds/minigolf.crowd_ovation.vsnd");
 		static readonly SoundEvent SoundBelowPar = new SoundEvent("sounds/minigolf.fart.vsnd");
@@ -73,8 +75,6 @@ namespace Minigolf
 
 		public void OnBallStoppedMoving(PlayerBall ball)
 		{
-			if (!ball.InHole && !HoleInfo.InBounds(CurrentHole, ball))
-				BallOutOfBounds(ball);
 		}
 
 		public void BallOutOfBounds(PlayerBall ball)
@@ -130,16 +130,10 @@ namespace Minigolf
 		[ServerCmd("minigolf_stroke")]
 		public static void PlayerBallStroke(float yaw, int power)
 		{
-			var owner = ConsoleSystem.Caller;
-
-			if (owner == null && owner is GolfPlayer)
+			if(ConsoleSystem.Caller is not GolfPlayer player)
+            {
 				return;
-
-			var player = owner as GolfPlayer;
-
-			// Don't let a player hit an already moving ball or one in the hole
-			// if (player.Ball.IsMoving || player.Ball.InHole)
-			// 	return;
+            }
 
 			// Clamp the power, should be 0-100
 			power = Math.Clamp(power, 0, 100);
@@ -155,7 +149,7 @@ namespace Minigolf
 			else
 				modifier = "hard";
 
-			// Smack that ball
+			// Smack that bitch
 			player.Ball.PhysicsBody.Velocity += Angles.AngleVector(new Angles(0, yaw, 0)) * (float)power * PowerMultiplier;
 			player.Ball.PhysicsBody.AngularVelocity = Vector3.Zero;
 
