@@ -30,7 +30,10 @@ namespace Trickgolf
 		public override void Respawn()
 		{
 			if (!BallHandle.IsValid)
+            {
 				BallHandle = new PlayerBall();
+			}
+
 			Ball.Owner = this;
 
 			(Game.Current as TrickgolfGame).ResetBall(Ball);
@@ -44,6 +47,7 @@ namespace Trickgolf
 			EnableDrawing = false;
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = false;
+			Strokes = 0;
 
 			Transmit = TransmitType.Always;
 
@@ -68,7 +72,9 @@ namespace Trickgolf
 
 			// Devcam might stop processing
 			if (input.StopProcessing)
+            {
 				return;
+            }
 
 			// Okay maybe this should be a controller or something?
 			if (input.Down(InputButton.Attack1))

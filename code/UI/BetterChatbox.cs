@@ -13,8 +13,8 @@ namespace Trickgolf.UI
 		public Panel Canvas { get; protected set; }
 		public TextEntry Input { get; protected set; }
 
-		public event Action<Player, string> OnChat;
-		public event Action<Player, string> OnChatCommand;
+		public static event Action<Player, string> OnChat;
+		public static event Action<Player, string> OnChatCommand;
 
 		public BetterChatbox()
 		{
@@ -108,7 +108,8 @@ namespace Trickgolf.UI
 
 			if (message[0] == '/')
 			{
-				Current?.OnChatCommand?.Invoke(ConsoleSystem.Caller, message);
+				var cmd = message.Remove(0, 1).Split(' ')[0];
+				OnChatCommand?.Invoke(ConsoleSystem.Caller, cmd.ToLower());
 				return;
 			}
 

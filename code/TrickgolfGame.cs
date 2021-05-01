@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Sandbox;
+using Trickgolf.UI;
 
 namespace Trickgolf
 {
@@ -9,39 +10,35 @@ namespace Trickgolf
 	{
 		public TrickgolfGame()
 		{
-			// easy way for now.. todo look into actual clientside huds?
 			if (IsServer)
             {
 				new TrickgolfHud();
             }
 
-			_ = StartTickTimer();
+            BetterChatbox.OnChatCommand += BetterChatbox_OnChatCommand;
 		}
 
-		public override Player CreatePlayer() => new GolfPlayer();
+        private void BetterChatbox_OnChatCommand(Player player, string command)
+        {
+			switch(command)
+            {
+				case "r":
+					(player as GolfPlayer).Respawn();
+					break;
+            }
+        }
 
-		public async Task StartTickTimer()
-		{
-			while (true)
-			{
-				await Task.NextPhysicsFrame();
-				OnTick();
-			}
-		}
+        public override Player CreatePlayer() => new GolfPlayer();
 
+		[Event("server.tick")]
 		public void OnTick()
         {
-			if (Host.IsClient)
-            {
-				return;
-            }
-
 			foreach(var ball in All.OfType<PlayerBall>())
             {
 				var wasMoving = ball.IsMoving;
 				ball.IsMoving = !ball.Velocity.IsNearlyZero();
 
-				if (ball.IsMoving == false && wasMoving == true)
+				if (!ball.IsMoving && wasMoving)
                 {
 					OnBallStoppedMoving(ball);
                 }

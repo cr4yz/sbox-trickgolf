@@ -10,8 +10,6 @@ namespace Trickgolf
 	{
 		public static HoleScore Current;
 
-		private Label holeLabel;
-		private Label parLabel;
 		private Label strokeLabel;
 
 		public HoleScore()
@@ -20,14 +18,6 @@ namespace Trickgolf
 
 			StyleSheet.Load("/ui/HoleScore.scss");
 
-			var holeContainer = Add.Panel("hole");
-			holeContainer.Add.Label("HOLE");
-			holeLabel = holeContainer.Add.Label("0");
-
-			var parContainer = Add.Panel("par");
-			parContainer.Add.Label("PAR");
-			parLabel = parContainer.Add.Label("0");
-
 			var strokeContainer = Add.Panel("stroke");
 			strokeContainer.Add.Label("STROKE");
 			strokeLabel = strokeContainer.Add.Label("0");
@@ -35,14 +25,11 @@ namespace Trickgolf
 
 		public override void Tick()
 		{
-			var game = Game.Current as TrickgolfGame;
-			if (game == null) return;
+			if(Player.Local is not GolfPlayer player)
+            {
+				return;
+            }
 
-			var player = Player.Local as GolfPlayer;
-			if (player == null) return;
-
-			holeLabel.Text = $"{game.CurrentHole}";
-			parLabel.Text = $"{game.HolePar}";
 			strokeLabel.Text = $"{player.Strokes}";
 		}
 	}
